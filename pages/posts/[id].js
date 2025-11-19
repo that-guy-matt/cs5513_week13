@@ -7,9 +7,6 @@ import { getAllPostIds, getPostData } from '../../lib/posts';
 // Import Next.js <Head> for setting metadata (title, etc.)
 import Head from 'next/head';
 
-// Import custom Date component to format dates
-import Date from '../../components/date';
-
 // Import CSS module for scoped styling
 import utilStyles from '../../styles/utils.module.css';
 
@@ -49,16 +46,43 @@ export default function Post({ postData }) {
                 <title>{postData.title}</title>
             </Head>
             <article>
-                {/* Post Title */}
+                {/* Book Title */}
                 <h1 className={utilStyles.headingX1}>{postData.title}</h1>
 
-                {/* Post Date */}
-                <div className={utilStyles.lightText}>
-                    <Date dateString={postData.date} />
-                </div>
+                {/* Author */}
+                {postData.author && (
+                    <div>
+                        <strong>Author:</strong> {postData.author}
+                    </div>
+                )}
 
-                {/* Render post content from wp */}
-                <div dangerouslySetInnerHTML={{__html: postData.content}} />
+                {/* Publisher */}
+                {postData.publisher && (
+                    <div>
+                        <strong>Publisher:</strong> {postData.publisher}
+                    </div>
+                )}
+
+                {/* Publication Date */}
+                {postData.publication_date && (
+                    <div className={utilStyles.lightText}>
+                        <strong>Publication Date:</strong> {postData.publication_date}
+                    </div>
+                )}
+
+                {/* Genre */}
+                {postData.genre && (
+                    <div>
+                        <strong>Genre:</strong> {postData.genre}
+                    </div>
+                )}
+
+                {/* Short Description */}
+                {postData.short_description && (
+                    <div>
+                        <strong>Description:</strong> {postData.short_description}
+                    </div>
+                )}
             </article>
         </Layout>
     );

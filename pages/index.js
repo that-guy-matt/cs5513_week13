@@ -56,19 +56,25 @@ export default function Home({ allPostsData }) {
 
       {/* Blog list section */}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <h2 className={utilStyles.headingLg}>Cool Books I've Read</h2>
 
         {/* Render blog posts as a list */}
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {allPostsData.map(({ id, date, title, author }) => (
             <li className={utilStyles.listItem} key={id}>
               {/* Link to individual post page (dynamic route: /posts/[id]) */}
               <Link href={`/posts/${id}`}>{title}</Link>
               <br />
+              {author && (
+                <small className={utilStyles.lightText}>
+                  By {author}
+                </small>
+              )}
+              <br />
 
               {/* Display post date formatted via Date component */}
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
+              <small className={`${utilStyles.lightText} ${utilStyles.smallText}`}>
+                Posted: <Date dateString={date} />
               </small>
             </li>
           ))}
